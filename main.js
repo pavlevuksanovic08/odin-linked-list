@@ -113,6 +113,17 @@ class LinkedList {
         const node = new Node();
         node.value = value;
         let temp = this.list;
+
+        if (index > this.size() - 1) return;
+
+        if (index === 0) {
+            let temp2 = temp.nextNode;
+            temp = node;
+            node.nextNode = temp2;
+            this.list = temp;
+            return;
+        }
+
         for (let i = 0; i < index - 1; i++) {
             temp = temp.nextNode;
         }
@@ -123,6 +134,15 @@ class LinkedList {
 
     removeAt(index) {
         let temp = this.list;
+
+        if (this.list === null) return;
+
+        if (index > this.size() - 1) return;
+
+        if (index === 0) {
+            this.list = this.list.nextNode;
+            return;
+        }
         for (let i = 0; i < index - 1; i++) {
             temp = temp.nextNode;
         }
@@ -189,12 +209,12 @@ console.log(list.toString());
 
 
 console.log("\n=== INSERT AT TEST ===");
-list.insertAt("snake", 2);
+list.insertAt("snake", 10);
 console.log(list.toString());
 // snake should appear at index 2
 
 
 console.log("\n=== REMOVE AT TEST ===");
-list.removeAt(1);
+list.removeAt(0);
 console.log(list.toString());
 // element at index 1 should be removed
